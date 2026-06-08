@@ -86,7 +86,6 @@ const closeSearch = () => {
   color: white !important;
 }
 
-/* Color del label (Buscar ciudad...) en blanco translúcido */
 :deep(.v-label) {
   color: rgba(255, 255, 255, 0.7) !important;
 }
