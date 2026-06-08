@@ -27,7 +27,7 @@ NomadSpot is a full-stack web application that helps digital nomads discover the
 - REST API
 - MySQL
 - Laravel Scheduler (data import commands)
-- Deployed on [Railway](https://railway.app)
+- Deployed on [render](https://render.com)
 
 **Frontend**
 - Vue.js 3 (Composition API)
@@ -43,7 +43,7 @@ NomadSpot is a full-stack web application that helps digital nomads discover the
 - [Nominatim / OpenStreetMap](https://nominatim.openstreetmap.org) — city coordinates
 - [Open-Meteo](https://open-meteo.com) — average temperature
 - [CountriesNow](https://countriesnow.space) — population data
-- [RestCountries](https://restcountries.com) — country flags
+- [RestCountries](https://restcountries.com) — country info
 - [Unsplash](https://unsplash.com/developers) — city images
 - [Windy](https://windy.com) — live weather embed
 
@@ -60,7 +60,7 @@ NomadSpot is a full-stack web application that helps digital nomads discover the
 ### Backend
 
 ```bash
-git clone https://github.com/your-username/nomadspot-api
+git clone https://github.com/tomalvi/nomadspot-api
 cd nomadspot-api
 composer install
 cp .env.example .env
@@ -90,7 +90,8 @@ npm run dev
 <img width="1870" height="977" alt="image" src="https://github.com/user-attachments/assets/98d88152-252c-42f3-8890-3c575bc6cfbe" />
 
 <img width="1873" height="982" alt="image" src="https://github.com/user-attachments/assets/cceb352b-ea7b-4663-87a2-8cb6951928fe" />
-><img width="1868" height="977" alt="image" src="https://github.com/user-attachments/assets/5e124ec6-df42-4a9f-bf86-4cac5bc183ba" />
+
+<img width="1868" height="977" alt="image" src="https://github.com/user-attachments/assets/5e124ec6-df42-4a9f-bf86-4cac5bc183ba" />
 
 
 
@@ -99,5 +100,5 @@ npm run dev
 ## 👤 Author
 
 **Tomas Almonte Viñeglas**
-- [LinkedIn](https://linkedin.com/in/your-profile)
+- [LinkedIn](www.linkedin.com/in/tomás-almonte-viñeglas)
 - tomasvineglas@hotmail.com
