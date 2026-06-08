@@ -87,10 +87,12 @@ npm run dev
 
 <img width="1873" height="976" alt="image" src="https://github.com/user-attachments/assets/051b3e66-05d1-49bd-a672-f3e6c99a5619" />
 
+<img width="1870" height="977" alt="image" src="https://github.com/user-attachments/assets/98d88152-252c-42f3-8890-3c575bc6cfbe" />
 
-> City detail modal with live weather
+<img width="1873" height="982" alt="image" src="https://github.com/user-attachments/assets/cceb352b-ea7b-4663-87a2-8cb6951928fe" />
+><img width="1868" height="977" alt="image" src="https://github.com/user-attachments/assets/5e124ec6-df42-4a9f-bf86-4cac5bc183ba" />
 
-> Versus Mode — compare two cities
+
 
 ---
 
