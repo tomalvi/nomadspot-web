@@ -231,7 +231,7 @@ import { useRoute, useRouter } from 'vue-router'
       minZoom: 2.5             
     }).setView([25, 0], 3);
 
-    L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=df7cec56-c245-4240-94f6-ae0c7901cf61', {
       attribution: '© Stadia Maps, © OpenStreetMap'
     }).addTo(map);
 
