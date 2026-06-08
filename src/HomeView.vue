@@ -38,7 +38,11 @@ import { useRoute, useRouter } from 'vue-router'
         if (!modalAbierto.value) {
           const city = tuArrayDeCiudades.find(c => c.city_id === route.params.cityId)
           if (city) {
-            map.flyTo([city.latitude, city.longitude], 14, { duration: 2 })
+            map.flyTo([lat, lng], 5, {
+              animate: true,
+              duration: 1.5,  
+              easeLinearity: 0.25
+            });
             ciudadSelecionada.value = city
             modalAbierto.value = true
           }
