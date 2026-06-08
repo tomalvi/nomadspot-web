@@ -59,7 +59,8 @@ import { useRoute, useRouter } from 'vue-router'
   }
 
   async function obtenerCiudades() {
-    const response = await axios.get('http://localhost:8000/api/cities/panel')
+    // const response = await axios.get('http://localhost:8000/api/cities/panel')
+    const response = await axios.get('https://nomadspot-api.onrender.com/api/cities/panel');
     ciudades.value = response.data;
   }
 
