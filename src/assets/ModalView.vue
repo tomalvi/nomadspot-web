@@ -193,7 +193,7 @@
               </div>
             </div>
 
-            <div class="flex items-end gap-[3px] px-2 bg-rose-500/5 rounded-lg border border-rose-500/10 py-1.5 ml-2">
+            <div class="flex items-end gap-[3px] px-2 bg-rose-500/5 rounded-lg border border-rose-500/10 py-1.5 ml-2 mt-2">
               <div
                 v-for="(h, i) in bars"
                 :key="i"
@@ -208,10 +208,6 @@
           </div>
 
         </div>
-
-
-
-        
 
         <!-- WINDY EMBED -->
         <v-card-text class="pr-2 space-y-4">

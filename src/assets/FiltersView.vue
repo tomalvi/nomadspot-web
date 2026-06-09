@@ -114,12 +114,14 @@
 
     <div class="custom-slider">
       <div class="flex justify-between text-[11px] text-gray-400 mb-1 uppercase font-medium">
-        <span>Temperatura máxima</span>
-        <span class="text-white font-bold">{{ filters.tempMax }}ºC</span>
+        <span>Rango de Temperatura</span>
+        <span class="text-white font-bold">
+          {{ filters.tempRange[0] }}ºC - {{ filters.tempRange[1] }}ºC
+        </span>
       </div>
 
-      <v-slider
-        v-model="filters.tempMax"
+      <v-range-slider
+        v-model="filters.tempRange"
         min="0"
         max="40"
         step="1"
@@ -134,11 +136,11 @@
               :icon="solIcono" 
               :class="solColorClase"
               class="will-change-transform"
-              :style="{ transform: `scale(${0.8 + (filters.tempMax / 40) * 0.5})` }"
+              :style="{ transform: `scale(${0.8 + (filters.tempRange[1] / 40) * 0.5})` }"
             ></v-icon>
           </div>
         </template>
-      </v-slider>
+      </v-range-slider>
     </div>
 
   </div>
@@ -156,8 +158,10 @@ const filters = ref({
   costMax: 5000,
   wifiMin: null,
   wifiMax: null,
-  tempMax: 40
+  tempMax: 40,
+  tempRange: [0, 40] 
 })
+
 
 const solIcono = computed(() => {
   const t = filters.value.tempMax
@@ -183,7 +187,8 @@ const resetFilters = () => {
     costMax: 5000,
     wifiMin: null,
     wifiMax: null,
-    tempMax: 40
+    tempMax: 40,
+    tempRange: [0, 40] 
   }
 }
 

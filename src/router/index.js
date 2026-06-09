@@ -13,11 +13,13 @@ const router = createRouter({
       path: '/city/:cityName', 
       name: 'city-detail',
       component: HomeView, 
+      meta: { abrirModalDetalle: true },
     },
     {
       path: '/comparative', 
       name: 'comparative-versus',
       component: HomeView, 
+      meta: { abrirModalComparativa: true },
     },
     {
       path: '/modal',

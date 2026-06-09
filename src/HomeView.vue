@@ -25,35 +25,59 @@ import { useRoute, useRouter } from 'vue-router'
   const modalComparativaAbierto = ref(false) 
   const ciudadSelecionada = ref(null)
 
+
+  function ejecutarRutaVersus() {
+    modalComparativaAbierto.value = true
+    modalAbierto.value = false
+  }
+
+  function ejecutarRutaCiudad(paramId) {
+    modalComparativaAbierto.value = false
+    
+    if (!ciudades.value || ciudades.value.length === 0) return
+
+    const city = ciudades.value.find(c => 
+      c.city_id === paramId || 
+      c.name?.toLowerCase() === paramId?.toLowerCase()
+    )
+    
+    if (city) {
+      const lat = city.latitude || city.lat
+      const lng = city.longitude || city.lng
+
+      if (lat && lng && map) {
+        map.flyTo([lat, lng], 14, {
+          animate: true,
+          duration: 2,  
+          easeLinearity: 0.25
+        });
+      }
+
+      ciudadSelecionada.value = city
+      modalAbierto.value = true
+    } else {
+      console.warn(`No se encontró la ciudad para el parámetro: ${paramId}`)
+    }
+  }
+
+  function limpiarModalesRuta() {
+    modalComparativaAbierto.value = false
+    modalAbierto.value = false
+  }
+
   watch(
-    () => route.name,
-    (currentRouteName) => {
-      if (currentRouteName === 'comparative-versus') {
-        modalComparativaAbierto.value = true
-        modalAbierto.value = false
-      } 
-      else if (currentRouteName === 'city-detail') {
-        modalComparativaAbierto.value = false
-        
-        if (!modalAbierto.value) {
-          const city = tuArrayDeCiudades.find(c => c.city_id === route.params.cityId)
-          if (city) {
-            map.flyTo([lat, lng], 5, {
-              animate: true,
-              duration: 1.5,  
-              easeLinearity: 0.25
-            });
-            ciudadSelecionada.value = city
-            modalAbierto.value = true
-          }
-        }
-      } 
-      else {
-        modalComparativaAbierto.value = false
-        modalAbierto.value = false
+    [() => route.name, () => route.params, ciudades], 
+    ([newName, newParams]) => {
+      if (newName === 'comparative-versus') {
+        ejecutarRutaVersus()
+      } else if (newName === 'city-detail') {
+        const param = newParams.cityName || newParams.cityId || newParams.id
+        ejecutarRutaCiudad(param)
+      } else if (newName === 'home') {
+        limpiarModalesRuta()
       }
     },
-    { immediate: true }
+    { immediate: true, deep: true }
   )
 
   const cerrarCualquierModal = () => {
@@ -133,14 +157,13 @@ import { useRoute, useRouter } from 'vue-router'
     }, 300)
   }
 
-
   const ciudadesFiltradas = computed(() => {
     if (!isExpanded.value && !activeFilters.value && !textoBuscado.value && !mostrarSoloFavoritos.value) {
       return ciudades.value
     }
 
-    const filters = activeFilters.value || { selectedContinent: 'Todos', costMax: 5000, scoreMin: 1, tempMax: 40, visaFriendly: false }
-    const { selectedContinent, costMax, scoreMin, tempMax, visaFriendly } = filters
+    const filters = activeFilters.value || { selectedContinent: 'Todos', costMax: 5000, scoreMin: 1, tempRange: [0, 40], visaFriendly: false }
+    const { selectedContinent, costMax, scoreMin, tempRange, visaFriendly } = filters
 
     return ciudades.value.filter(city => {
       let matchesSearch = true
@@ -157,7 +180,9 @@ import { useRoute, useRouter } from 'vue-router'
       
       const matchesCost = (Number(city.avg_rent_usd) || 0) <= costMax
       const matchesScore = (Number(city.score_overall) || 0) >= scoreMin
-      const matchesTemp = (Number(city.temp || city.temperature) || 0) <= tempMax
+      
+      const cityTemp = Number(city.temp || city.avg_temp_c) || 0
+      const matchesTemp = cityTemp >= tempRange[0] && cityTemp <= tempRange[1]
 
       const matchesVisa = !visaFriendly || Number(city.visa_friendly) === 1
 
@@ -167,12 +192,6 @@ import { useRoute, useRouter } from 'vue-router'
     })
   })
 
-  function favoriteFilter() {
-    console.log('entra')
-     return ciudadesFiltradas.value.filter(city => {
-      return favoriteCities.value.includes(city.city_id)
-    })
-  }
 
   const activarMarcadorMapa = (cityId) => {
     const marker = marcadoresActivos[cityId]
@@ -187,7 +206,6 @@ import { useRoute, useRouter } from 'vue-router'
       marker.closeTooltip() 
     }
   }
-
 
   watch(ciudadesFiltradas, (newCities) => {
     if (!map) return
