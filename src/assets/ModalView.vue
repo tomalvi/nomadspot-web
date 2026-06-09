@@ -11,6 +11,7 @@
 
   const calcularPorcentajeProgreso = (score) => (Number(score) || 0) * 10;
   function calcularColor(score) {
+    console.log(score)
     if (score >= 9) {
       return "purple-accent-3";
     } else if (score >= 7.5) {
@@ -174,7 +175,7 @@
                 :model-value="calcularPorcentajeProgreso(datosCiudad.score_overall)" 
                 :height="8" 
                 class="m-0 rounded-full" 
-                :color="calcularColor(datosCiudad.score_cost)" 
+                :color="calcularColor(datosCiudad.score_overall)" 
 
               ></v-progress-linear>
             </div>

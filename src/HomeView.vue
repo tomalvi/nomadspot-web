@@ -108,7 +108,7 @@ import { useRoute, useRouter } from 'vue-router'
   const calcularPorcentajeProgreso = (score) => (Number(score) || 0) * 10;
 
   function calcularColor(score) {
-    if (score > 9) {
+    if (score >= 9) {
       return "purple-accent-3";
     } else if (score >= 7.5) {
       return "green-accent-3";
