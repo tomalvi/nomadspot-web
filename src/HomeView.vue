@@ -354,7 +354,7 @@ import { useRoute, useRouter } from 'vue-router'
             <div class="flex justify-between relative z-10 items-center">
               
               <div class="flex items-baseline gap-1.5">
-                <h3 class="text-xl font-medium text-white">{{ ciudad.name }},</h3>
+                <h3 class="text-xl font-medium text-white">{{ ciudad.name.toUpperCase() }},</h3>
                 <p class="text-base font-light">{{ ciudad.timezone }}</p>
               </div>
 
